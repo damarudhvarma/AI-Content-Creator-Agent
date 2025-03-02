@@ -1,7 +1,8 @@
 "use client"
-import { ClerkProvider } from "@clerk/nextjs";
+
 import { SchematicProvider } from "@schematichq/schematic-react";
 import SchematicWrapper from "./SchematicWrapper";
+import { ConvexClientProvider } from "./ConvexClientProvider";
 export default function ClientWrapper({
   children,
 }: Readonly<{
@@ -12,12 +13,12 @@ export default function ClientWrapper({
     throw new Error("Missing NEXT_PUBLIC_SCHEMATIC_PUBKEY");
   }
   return (
-      <ClerkProvider>
+      <ConvexClientProvider>
         <SchematicProvider publishableKey={schematicPubkey}>
           <SchematicWrapper>
        {children}
           </SchematicWrapper>
         </SchematicProvider>
-      </ClerkProvider> 
+      </ConvexClientProvider> 
   )
 }
